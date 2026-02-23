@@ -7,10 +7,14 @@ namespace Sistato.LunyScripts
 	{
 		public override void Build(ScriptContext context)
 		{
-			const Single Speed = 15f;
+			const Single Speed = 12f;
 
-			On.Ready(Debug.Log($"Hello, {nameof(Player)}"));
-			On.FrameUpdate(Transform.MoveBy(Input.Direction("Move"), Speed));
+			//On.Ready(Debug.Log($"Hello, {nameof(Player)}"));
+			On.FrameUpdate(
+				//If(Input.Direction("Look") != Variable.FromVector2(LunyVector2.Zero)).Then(Transform.SetLocalRotation(Input.Rotation("Look"))),
+				Transform.SetLocalRotation(Input.Rotation("Look")),
+				Transform.ShiftBy(Input.Direction("Move"), Speed)
+			);
 		}
 	}
 }
