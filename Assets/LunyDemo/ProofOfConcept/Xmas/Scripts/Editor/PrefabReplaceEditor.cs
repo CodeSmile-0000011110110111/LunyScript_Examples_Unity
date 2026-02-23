@@ -12,7 +12,7 @@ public class PrefabReplaceEditor : EditorWindow
 {
     public GameObject newPrefab;
 
-    [MenuItem("Tools/Replace Child Prefabs")]
+    //[MenuItem("CodeSmile/Replace Child Prefabs")]
     public static void ShowWindow() => GetWindow<PrefabReplaceEditor>("Replace Child Prefabs");
 
     private void OnGUI()

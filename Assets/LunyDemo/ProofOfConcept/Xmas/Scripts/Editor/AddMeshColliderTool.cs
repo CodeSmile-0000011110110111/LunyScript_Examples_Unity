@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AddMeshColliderTool : MonoBehaviour
 {
-	[MenuItem("Tools/Add MeshCollider to Selected Objects %#m")]
+	//[MenuItem("CodeSmile/Add MeshCollider to Selected Objects %#m")]
 	private static void AddMeshCollidersToSelectedObjects()
 	{
 		// Get all selected GameObjects in the scene
