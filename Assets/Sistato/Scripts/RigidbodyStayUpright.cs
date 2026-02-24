@@ -98,9 +98,6 @@ public sealed class RigidbodyStayUpright : MonoBehaviour
 		// Smoothly increase the factor toward 1
 		var speed = Time.fixedDeltaTime * (1f / _touchedGroundUprightDampDuration);
 		_currentUprightDampFactor = Mathf.MoveTowards(_currentUprightDampFactor, 1f, speed);
-
-		if (_currentUprightDampFactor < 1f)
-			LunyLogger.LogInfo(_currentUprightDampFactor);
 	}
 
 	private void InferGroundCheckRadiusFromCollider()

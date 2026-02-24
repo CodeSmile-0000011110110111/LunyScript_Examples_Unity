@@ -10,10 +10,12 @@ namespace Sistato.LunyScripts
 			const Single Speed = 12f;
 
 			On.FrameUpdate(
-				//If(Input.Direction("Look") != Variable.FromVector2(LunyVector2.Zero)).Then(Transform.SetLocalRotation(Input.Rotation("Look"))),
+				//If(Input.Rotation("Look").Length > 0.5f).Then(..),
 				Transform.SetLocalRotation(Input.Rotation("Look")),
 				Transform.ShiftBy(Input.Direction("Move"), Speed)
 			);
+
+			//On.CollisionWith("Enemy").Do();
 		}
 	}
 }
