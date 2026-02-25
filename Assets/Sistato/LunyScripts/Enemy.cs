@@ -1,6 +1,7 @@
 ﻿using Luny;
 using LunyScript;
 using LunyScript.BlockBuilders;
+using LunyScript.Unity;
 using UnityEngine;
 
 namespace Sistato.LunyScripts
@@ -36,6 +37,8 @@ namespace Sistato.LunyScripts
 				Component.Disable(typeof(CapsuleCollider)));
 
 			Timer("destroy").In(20).Seconds().Do(Object.Destroy());
+
+
 		}
 	}
 }

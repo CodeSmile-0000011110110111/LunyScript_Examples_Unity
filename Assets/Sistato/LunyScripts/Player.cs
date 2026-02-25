@@ -16,6 +16,14 @@ namespace Sistato.LunyScripts
 			);
 
 			//On.CollisionWith("Enemy").Do(blocks);
+
+			// On.CollisionStarted(Debug.Log("OnCollisionStarted ==>"));
+			// On.CollisionEnded(Debug.Log("OnCollisionEnded <=="));
+			// On.Colliding(Debug.Log("OnColliding..."));
+			//
+			// On.TriggerEntered(Debug.Log("OnTriggerEntered ==>"));
+			// On.TriggerExited(Debug.Log("OnTriggerExited <=="));
+			// On.Triggering(Debug.Log("OnTriggering..."));
 		}
 	}
 }
