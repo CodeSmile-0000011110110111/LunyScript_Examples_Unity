@@ -50428,7 +50428,7 @@ MonoBehaviour:
   CameraSide: 1
   CameraDistance: 11.17
   AvoidObstacles:
-    Enabled: 1
+    Enabled: 0
     CollisionFilter:
       serializedVersion: 2
       m_Bits: 1

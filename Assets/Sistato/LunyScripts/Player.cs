@@ -15,7 +15,7 @@ namespace Sistato.LunyScripts
 				Transform.ShiftBy(Input.Direction("Move"), Speed)
 			);
 
-			//On.CollisionWith("Enemy").Do();
+			//On.CollisionWith("Enemy").Do(blocks);
 		}
 	}
 }

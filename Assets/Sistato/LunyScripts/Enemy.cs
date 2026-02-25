@@ -28,10 +28,10 @@ namespace Sistato.LunyScripts
 			Timer("kill")
 				.In(12)
 				.Seconds()
-				.Do(
-					isDead.Set(true),
-					Component.Disable(typeof(RigidbodyStayUpright))
-				);
+				.Do(isDead.Set(true),
+					Component.Disable(typeof(RigidbodyStayUpright)),
+					Component.Disable(typeof(GooglyEyesFocus))
+					);
 			Timer("disappear").In(18).Seconds().Do(
 				Component.Disable(typeof(CapsuleCollider)));
 
