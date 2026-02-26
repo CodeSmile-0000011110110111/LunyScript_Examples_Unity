@@ -1,3 +1,4 @@
+using Luny.Unity.Engine.Bridge;
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,8 @@ public sealed class GooglyEyesFocus : MonoBehaviour
 
 	private void Awake()
 	{
+		TestThrow.Throw(gameObject);
+
 		_rigidbody = GetComponent<Rigidbody>();
 
 		var player = GameObject.FindWithTag(TargetObjectName);

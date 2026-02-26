@@ -7,7 +7,7 @@ namespace Sistato.LunyScripts
 	{
 		public override void Build(ScriptContext context)
 		{
-			const Single Speed = 12f;
+			const Single Speed = 9f;
 
 			On.FrameUpdate(
 				//If(Input.Rotation("Look").Length > 0.5f).Then(..),
@@ -15,8 +15,9 @@ namespace Sistato.LunyScripts
 				Transform.ShiftBy(Input.Direction("Move"), Speed)
 			);
 
-			//On.CollisionWith("Enemy").Do(blocks);
+			On.Collision.Layered("Enemy").Begins(Debug.Log("ouch"));
 
+			//On.CollisionWith("Enemy").Do(blocks);
 			// On.CollisionStarted(Debug.Log("OnCollisionStarted ==>"));
 			// On.CollisionEnded(Debug.Log("OnCollisionEnded <=="));
 			// On.Colliding(Debug.Log("OnColliding..."));

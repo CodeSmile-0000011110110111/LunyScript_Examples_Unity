@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0.01}
-  m_LocalScale: {x: 0.6, y: 0.2, z: 0.6}
+  m_LocalScale: {x: 0.44, y: 0.2, z: 0.44}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4460123941554580314}
@@ -102,8 +102,8 @@ Rigidbody:
   m_GameObject: {fileID: 46924877859290395}
   serializedVersion: 5
   m_Mass: 10
-  m_LinearDamping: 1
-  m_AngularDamping: 0.05
+  m_LinearDamping: 5
+  m_AngularDamping: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -145,7 +145,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.03
+    limit: 0.07
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -220,7 +220,7 @@ ConfigurableJoint:
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
-  m_MassScale: 1000
+  m_MassScale: 10000
   m_ConnectedMassScale: 1
 --- !u!114 &4175111669769514530
 MonoBehaviour:
@@ -722,7 +722,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0.01}
-  m_LocalScale: {x: 0.6, y: 0.2, z: 0.6}
+  m_LocalScale: {x: 0.44, y: 0.2, z: 0.44}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 347564939746798682}
@@ -793,8 +793,8 @@ Rigidbody:
   m_GameObject: {fileID: 5023315044233108632}
   serializedVersion: 5
   m_Mass: 10
-  m_LinearDamping: 1
-  m_AngularDamping: 0.05
+  m_LinearDamping: 5
+  m_AngularDamping: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -836,7 +836,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.03
+    limit: 0.07
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -911,7 +911,7 @@ ConfigurableJoint:
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
-  m_MassScale: 1000
+  m_MassScale: 10000
   m_ConnectedMassScale: 1
 --- !u!114 &2477674076816622846
 MonoBehaviour:
