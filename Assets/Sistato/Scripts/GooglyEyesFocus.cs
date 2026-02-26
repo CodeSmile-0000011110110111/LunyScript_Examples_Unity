@@ -1,4 +1,3 @@
-using Luny.Unity.Engine.Bridge;
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,12 +11,12 @@ public sealed class GooglyEyesFocus : MonoBehaviour
 
 	private Rigidbody _rigidbody;
 	private Transform _lookAtTarget;
+	private Vector3 _initialScale;
 
 	private void Awake()
 	{
-		TestThrow.Throw(gameObject);
-
 		_rigidbody = GetComponent<Rigidbody>();
+		_initialScale = transform.localScale;
 
 		var player = GameObject.FindWithTag(TargetObjectName);
 		if (player == null)
@@ -36,8 +35,14 @@ public sealed class GooglyEyesFocus : MonoBehaviour
 
 		var directionToTarget = _lookAtTarget.position - transform.position;
 		var forceDirection = new Vector3(directionToTarget.x, 0f, directionToTarget.z);
-		if (forceDirection.sqrMagnitude > 0.01f)
+		var forceDirectionSqrMagnitude = forceDirection.sqrMagnitude;
+		if (forceDirectionSqrMagnitude > 0.01f)
 			_rigidbody.AddForce(forceDirection.normalized * _focusStrength, ForceMode.Acceleration);
+
+		if (forceDirectionSqrMagnitude < 12f)
+			transform.localScale = new Vector3(_initialScale.x * 1.4f, _initialScale.y, _initialScale.z * 1.4f);
+		else
+			transform.localScale = _initialScale;
 	}
 
 	private void OnDisable()

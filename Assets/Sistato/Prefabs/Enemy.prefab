@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 612702074915156964}
   - component: {fileID: 344036161182864175}
   - component: {fileID: 7683569739736458302}
-  - component: {fileID: 703487753727657728}
   - component: {fileID: 4175111669769514530}
+  - component: {fileID: 703487753727657728}
   m_Layer: 8
   m_Name: GooglyEye
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0.01}
-  m_LocalScale: {x: 0.44, y: 0.2, z: 0.44}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4460123941554580314}
@@ -101,7 +101,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46924877859290395}
   serializedVersion: 5
-  m_Mass: 10
+  m_Mass: 15
   m_LinearDamping: 5
   m_AngularDamping: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -120,6 +120,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4175111669769514530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46924877859290395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff0f22e379b9cf429a689cb13170085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GooglyEyesFocus
+  TargetObjectName: Player
+  _focusStrength: 10
+  _focusStrengthRandomRange: 3
 --- !u!153 &703487753727657728
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -145,7 +160,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.07
+    limit: 0.065
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -222,21 +237,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 10000
   m_ConnectedMassScale: 1
---- !u!114 &4175111669769514530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46924877859290395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ff0f22e379b9cf429a689cb13170085, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GooglyEyesFocus
-  TargetObjectName: Player
-  _focusStrength: 15
-  _focusStrengthRandomRange: 3
 --- !u!1 &787172311973399905
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,8 +703,8 @@ GameObject:
   - component: {fileID: 9181745584933144735}
   - component: {fileID: 7023910394345709779}
   - component: {fileID: 7362994675908287242}
-  - component: {fileID: 1087833307784440325}
   - component: {fileID: 2477674076816622846}
+  - component: {fileID: 1087833307784440325}
   m_Layer: 8
   m_Name: GooglyEye
   m_TagString: Untagged
@@ -722,7 +722,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0.01}
-  m_LocalScale: {x: 0.44, y: 0.2, z: 0.44}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 347564939746798682}
@@ -792,7 +792,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5023315044233108632}
   serializedVersion: 5
-  m_Mass: 10
+  m_Mass: 15
   m_LinearDamping: 5
   m_AngularDamping: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -811,6 +811,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2477674076816622846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5023315044233108632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff0f22e379b9cf429a689cb13170085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GooglyEyesFocus
+  TargetObjectName: Player
+  _focusStrength: 10
+  _focusStrengthRandomRange: 3
 --- !u!153 &1087833307784440325
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -836,7 +851,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.07
+    limit: 0.065
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -913,21 +928,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 10000
   m_ConnectedMassScale: 1
---- !u!114 &2477674076816622846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5023315044233108632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ff0f22e379b9cf429a689cb13170085, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GooglyEyesFocus
-  TargetObjectName: Player
-  _focusStrength: 15
-  _focusStrengthRandomRange: 3
 --- !u!1 &6855550935752838287
 GameObject:
   m_ObjectHideFlags: 0
