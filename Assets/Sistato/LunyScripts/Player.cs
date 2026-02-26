@@ -15,7 +15,7 @@ namespace Sistato.LunyScripts
 				Transform.ShiftBy(Input.Direction("Move"), Speed)
 			);
 
-			On.Collision.Layered("Enemy").Begins(Debug.Log("ouch"));
+			On.Collision.Begins(Debug.Log("ouch"));
 
 			//On.CollisionWith("Enemy").Do(blocks);
 			// On.CollisionStarted(Debug.Log("OnCollisionStarted ==>"));
