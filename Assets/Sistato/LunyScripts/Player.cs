@@ -1,5 +1,6 @@
 ﻿using LunyScript;
 using System;
+using UnityEngine;
 
 namespace Sistato.LunyScripts
 {
@@ -15,16 +16,15 @@ namespace Sistato.LunyScripts
 				Transform.ShiftBy(Input.Direction("Move"), Speed)
 			);
 
-			On.Collision.Begins(Debug.Log("ouch"));
+			On.Collision.Layered("Enemy").Cooldown(1).Begins(Debug.Log(">>>>> OUCH !!! <<<<<<"));
 
-			//On.CollisionWith("Enemy").Do(blocks);
-			// On.CollisionStarted(Debug.Log("OnCollisionStarted ==>"));
-			// On.CollisionEnded(Debug.Log("OnCollisionEnded <=="));
-			// On.Colliding(Debug.Log("OnColliding..."));
-			//
-			// On.TriggerEntered(Debug.Log("OnTriggerEntered ==>"));
-			// On.TriggerExited(Debug.Log("OnTriggerExited <=="));
-			// On.Triggering(Debug.Log("OnTriggering..."));
+			/*
+			On.Collision
+				.Layered("Enemy", "Enemy")
+				.Typed(typeof(RigidbodyStayUpright), typeof(Rigidbody))
+				.Named("Enemy", "Enemy")
+				.Begins(Debug.Log("ouch"));
+				*/
 		}
 	}
 }
