@@ -1,6 +1,7 @@
 ﻿using Luny;
 using LunyScript;
-using LunyScript.ApiBuilders.Object;
+using LunyScript.Api.Coroutine;
+using LunyScript.Api.Object;
 
 namespace Sistato.LunyScripts
 {
