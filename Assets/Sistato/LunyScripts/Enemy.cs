@@ -1,6 +1,6 @@
 ﻿using Luny;
 using LunyScript;
-using LunyScript.BlockBuilders;
+using LunyScript.Api.Transform;
 using LunyScript.Unity;
 using UnityEngine;
 
@@ -17,11 +17,10 @@ namespace Sistato.LunyScripts
 			var isDead = Var["is dead"];
 
 			On.FrameUpdate(
-				If(!isDead)
-					.Then(
-						Transform.MoveTowards(player).Speed(3).LockY().Do(),
-						Transform.RotateTowards(player).Responsiveness(0.05).Slerp()
-					)
+				If(!isDead).Then(
+					Transform.MoveTowards(player).Speed(3).LockY().Do(),
+					Transform.RotateTowards(player).Responsiveness(0.05).Slerp()
+				)
 			);
 
 			//Timer("speed bump").Every(1).Seconds().Do(Var["speed"].Inc());
