@@ -1,7 +1,6 @@
 ﻿using Luny;
 using LunyScript;
-using LunyScript.Api.Object;
-using UnityEngine.Localization.SmartFormat.Utilities;
+using LunyScript.ApiBuilders.Object;
 
 namespace Sistato.LunyScripts
 {
@@ -13,10 +12,9 @@ namespace Sistato.LunyScripts
 			var objects = engine.Objects;
 			var enemiesFolder = objects.Find("Enemies");
 
-			Timer("Spawn Enemy")
-				.Every(.25)
-				.Seconds()
- 			.Do(Object.Create("Enemy").From("Assets/Sistato/Prefabs/Enemy").Parent(enemiesFolder));
+			var createEnemy = Object.Create("Enemy").From("Assets/Sistato/Prefabs/Enemy").Parent(enemiesFolder);
+
+			Timer("Spawn Enemy").Every(.25).Seconds().Do(createEnemy, createEnemy, createEnemy);
 
 			//On.ObjectCreated("Enemy").Do(..);
 
