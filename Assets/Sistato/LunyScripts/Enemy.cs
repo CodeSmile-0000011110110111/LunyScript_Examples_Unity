@@ -1,7 +1,5 @@
 ﻿using Luny;
 using LunyScript;
-using LunyScript.Api.Coroutine;
-using LunyScript.Api.Transform;
 using LunyScript.Unity;
 using UnityEngine;
 
@@ -26,17 +24,14 @@ namespace Sistato.LunyScripts
 
 			//Timer("speed bump").Every(1).Seconds().Do(Var["speed"].Inc());
 
-			Timer("kill")
-				.In(12)
-				.Seconds()
-				.Do(isDead.Set(true),
+			TimerBuilderStartEx.Do(TimerBuilderStartEx.Seconds(Timer("kill")
+						.In(12)), isDead.Set(true),
 					Component.Disable(typeof(RigidbodyStayUpright)),
 					Component.Disable(typeof(GooglyEyesFocus))
 					);
-			Timer("disappear").In(18).Seconds().Do(
-				Component.Disable(typeof(CapsuleCollider)));
+			TimerBuilderStartEx.Do(TimerBuilderStartEx.Seconds(Timer("disappear").In(18)), Component.Disable(typeof(CapsuleCollider)));
 
-			Timer("destroy").In(20).Seconds().Do(Object.Destroy());
+			TimerBuilderStartEx.Do(TimerBuilderStartEx.Seconds(Timer("destroy").In(20)), Object.Destroy());
 
 
 		}

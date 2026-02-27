@@ -1,7 +1,5 @@
 ﻿using Luny;
 using LunyScript;
-using LunyScript.Api.Coroutine;
-using LunyScript.Api.Object;
 
 namespace Sistato.LunyScripts
 {
@@ -15,7 +13,7 @@ namespace Sistato.LunyScripts
 
 			var createEnemy = Object.Create("Enemy").From("Assets/Sistato/Prefabs/Enemy").Parent(enemiesFolder);
 
-			Timer("Spawn Enemy").Every(.25).Seconds().Do(createEnemy, createEnemy, createEnemy);
+			TimerBuilderStartEx.Do(TimerBuilderStartEx.Seconds(Timer("Spawn Enemy").Every(.25)), createEnemy, createEnemy, createEnemy);
 
 			//On.ObjectCreated("Enemy").Do(..);
 
