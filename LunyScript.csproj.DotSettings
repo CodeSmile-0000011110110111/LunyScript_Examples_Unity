@@ -7,6 +7,9 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Ccoroutines_005Cfor/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Ccoroutines_005Ctimer/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Ccoroutines/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Ccoroutines_005Cto_0020review/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Ccoroutines_005Cto_0020review_005Cfor/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Ccoroutines_005Cto_0020review_005Ctimer/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Cevents/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Cinput/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Capi_005Cobject/@EntryIndexedValue">True</s:Boolean>

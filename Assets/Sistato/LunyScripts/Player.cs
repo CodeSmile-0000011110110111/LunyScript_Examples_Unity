@@ -20,15 +20,15 @@ namespace Sistato.LunyScripts
 			Run(MyVoidMethod);
 
 			// Counts frames or heartbeats: In() => once-only, Every() => repeating
-			Counter("counter in beats").In(60).Heartbeats().Do(Debug.Log("counter in beats"));
-			Counter("counter every beats").Every(60).Heartbeats().Do(Debug.Log("counter every beats"));
-			Counter("counter in frames").In(60).Frames().Do(Debug.Log("counter in frames"));
-			Counter("counter every frames").Every(60).Frames().Do(Debug.Log("counter every frames"));
+			// Counter("counter in beats").In(60).Heartbeats().Do(Debug.Log("counter in beats"));
+			// Counter("counter every beats").Every(60).Heartbeats().Do(Debug.Log("counter every beats"));
+			// Counter("counter in frames").In(60).Frames().Do(Debug.Log("counter in frames"));
+			// Counter("counter every frames").Every(60).Frames().Do(Debug.Log("counter every frames"));
 
-			//For(3).Do(Debug.Log("for 3"));
-			//Coroutine("hello").For(1).Seconds().Do(Debug.Log("for a second"));
-			EveryBuilderStartEx.Do(Every(10).Heartbeats(), Debug.Log("bu-bumm"));
-			EveryBuilderStartEx.Do(Every(60).Heartbeats(), Debug.Log("60 frames passed"));
+			Every(2).Heartbeats().Do(Debug.Log("every even beat"));
+			Every(2).Heartbeats().DelayBy(1).Do(Debug.Log("every odd beat"));
+			Every(2).Frames().Do(Debug.Log("every even frame"));
+			Every(2).Frames().DelayBy(1).Do(Debug.Log("every odd frame"));
 
 			/*
 			On.Collision
