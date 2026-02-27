@@ -1,253 +1,272 @@
-using Luny;
-using Luny.Engine.Bridge.Physics;
 using LunyScript.Blocks;
-using LunyScript.Blocks.Guards;
-using LunyScript.Blocks.PhysicsEvent;
-using LunyScript.Blocks.Predicates;
 using System;
-namespace LunyScript.ApiBuilders.Event
+namespace LunyScript.ApiBuilders.Transform
 {
-        // â”€â”€ State tokens & interfaces â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        public interface ICollisionBuilderState {}
-        /// <summary>Initial state: no filters or event handlers set yet.</summary>
-        public interface ICollisionBuilderStart : ICollisionBuilderState {}
-        /// <summary>At least one filter or handler has been set.</summary>
-        public interface ICollisionBuilderReady : ICollisionBuilderState {}
-        /// <summary>Layered() has been called â€” Masked() is now blocked.</summary>
-        public interface ICollisionBuilderLayered : ICollisionBuilderReady {}
-        /// <summary>Masked() has been called â€” Layered() is now blocked.</summary>
-        public interface ICollisionBuilderMasked : ICollisionBuilderReady {}
-        public struct CollisionBuilderStart : ICollisionBuilderStart {}
-        public struct CollisionBuilderReady : ICollisionBuilderReady {}
-        public struct CollisionBuilderLayered : ICollisionBuilderLayered {}
-        public struct CollisionBuilderMasked : ICollisionBuilderMasked {}
         /// <summary>
-        /// Fluent builder for filtered collision/trigger event sequences.
-        /// Filters (Tagged, Named, Layered, Masked, Typed) are order-independent and accumulate.
-        /// Event handlers (Begins, Updates, Ends) are also order-independent.
-        /// Parameters within a filter kind are OR-combined; different kinds are AND-combined.
-        /// Call <see cref="Do"/> to finalize and schedule the event sequences.
+        /// Fluent builder for Rotate-Towards blocks.
+        /// Usage: Transform.RotateTowards(target).Speed(45).Responsiveness(2).LockY().Do()
+        ///        Transform.RotateTowards(target).Speed(45).Lerp()
+        ///        Transform.RotateTowards(target).Speed(45).Slerp()
         /// </summary>
-        public readonly struct OnPhysicsEventBuilder<T> where T : struct, ICollisionBuilderState
+        public readonly struct TransformRotateBuilder<T> where T : struct, ITransformBuilderState
         {
                 internal readonly Script Script;
-                internal readonly PhysicsEventOptions Options;
+                internal readonly TransformTowardsObjectOptions Options;
                 internal readonly BuilderToken Token;
-                internal OnPhysicsEventBuilder(Script script, PhysicsEventOptions options, BuilderToken token)
+                internal TransformRotateBuilder(Script script, TransformTowardsObjectOptions options, BuilderToken token)
                 {
                         Script = script;
                         Options = options;
                         Token = token;
-                        var capturedScript = script;
-                        var capturedOptions = options;
-                        token?.SetAutoFinalizer(() => Finalize(capturedScript, capturedOptions, token));
-                }
-                // â”€â”€ Filters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-                /// <summary>
-                /// Only react when the other object has one of the given tags (OR logic).
-                /// Combine with other filter kinds for AND logic across kinds.
-                /// </summary>
-                public OnPhysicsEventBuilder<CollisionBuilderReady> Tagged(params String[] tags)
-                {
-                        var options = Options;
-                        options.Filter.Tags = tags;
-                        options.Filter.TagPredicate = BlockExecutePredicates.ForTags(tags);
-                        return new OnPhysicsEventBuilder<CollisionBuilderReady>(Script, options, Token);
-                }
-                /// <summary>
-                /// Only react when the other object's name matches one of the given names (OR logic).
-                /// </summary>
-                public OnPhysicsEventBuilder<CollisionBuilderReady> With(params String[] names)
-                {
-                        var options = Options;
-                        options.Filter.Names = names;
-                        options.Filter.NamePredicate = BlockExecutePredicates.ForNames(names);
-                        return new OnPhysicsEventBuilder<CollisionBuilderReady>(Script, options, Token);
-                }
-                /// <summary>
-                /// Only react when the other object is on one of the given layers (OR logic).
-                /// Mutually exclusive with Masked() â€” Masked() becomes unavailable after calling this.
-                /// </summary>
-                public OnPhysicsEventBuilder<CollisionBuilderLayered> Layered(params String[] layerNames)
-                {
-                        var options = Options;
-                        options.Filter.Layers = layerNames;
-                        options.Filter.LayerPredicate = BlockExecutePredicates.ForLayers(layerNames);
-                        return new OnPhysicsEventBuilder<CollisionBuilderLayered>(Script, options, Token);
-                }
-                /// <summary>
-                /// Only react when the other object's component list contains at least one of the given types (OR logic).
-                /// </summary>
-                public OnPhysicsEventBuilder<CollisionBuilderReady> Typed(params Type[] componentTypes)
-                {
-                        var options = Options;
-                        options.Filter.ComponentTypes = componentTypes;
-                        options.Filter.TypePredicate = BlockExecutePredicates.ForComponentTypes(componentTypes);
-                        return new OnPhysicsEventBuilder<CollisionBuilderReady>(Script, options, Token);
-                }
-                // â”€â”€ Event handlers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-                /// <summary>Blocks to run when the collision/trigger begins.</summary>
-                public OnPhysicsEventBuilder<CollisionBuilderReady> Begins(params ScriptActionBlock[] blocks)
-                {
-                        var options = Options;
-                        options.BeginsBlocks = blocks;
-                        return new OnPhysicsEventBuilder<CollisionBuilderReady>(Script, options, Token);
-                }
-                /// <summary>Blocks to run each physics step while the collision/trigger persists.</summary>
-                public OnPhysicsEventBuilder<CollisionBuilderReady> Continues(params ScriptActionBlock[] blocks)
-                {
-                        var options = Options;
-                        options.UpdatesBlocks = blocks;
-                        return new OnPhysicsEventBuilder<CollisionBuilderReady>(Script, options, Token);
-                }
-                /// <summary>Blocks to run when the collision/trigger ends.</summary>
-                public OnPhysicsEventBuilder<CollisionBuilderReady> Ends(params ScriptActionBlock[] blocks)
-                {
-                        var options = Options;
-                        options.EndsBlocks = blocks;
-                        return new OnPhysicsEventBuilder<CollisionBuilderReady>(Script, options, Token);
-                }
-                /// <summary>
-                /// Minimum seconds between successive reactions. Zero (default) means no cooldown.
-                /// The cooldown is checked before collision predicates; evaluated per event sequence.
-                /// </summary>
-                public OnPhysicsEventBuilder<CollisionBuilderReady> Cooldown(Double seconds)
-                {
-                        var options = Options;
-                        options.Cooldown = seconds;
-                        return new OnPhysicsEventBuilder<CollisionBuilderReady>(Script, options, Token);
-                }
-                // â”€â”€ Finalize â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-                private static void Finalize(Script script, in PhysicsEventOptions options, BuilderToken token)
-                {
-                        var guards = BuildGuards(options.Cooldown);
-                        if (options.IsTrigger)
-                        {
-                                var predicates = BuildTriggerPredicates(options.Filter);
-                                if (options.BeginsBlocks != null)
-                                {
-                                        var block = new TriggerSequenceBlock(options.BeginsBlocks, guards, predicates);
-                                        script.Scheduler?.ScheduleTriggerEventSequence(block, LunyTriggerEvent.OnTriggerEntered);
-                                }
-                                if (options.UpdatesBlocks != null)
-                                {
-                                        var block = new TriggerSequenceBlock(options.UpdatesBlocks, guards, predicates);
-                                        script.Scheduler?.ScheduleTriggerEventSequence(block, LunyTriggerEvent.OnTriggerUpdate);
-                                }
-                                if (options.EndsBlocks != null)
-                                {
-                                        var block = new TriggerSequenceBlock(options.EndsBlocks, guards, predicates);
-                                        script.Scheduler?.ScheduleTriggerEventSequence(block, LunyTriggerEvent.OnTriggerExited);
-                                }
-                        }
-                        else
-                        {
-                                var predicates = BuildCollisionPredicates(options.Filter);
-                                if (options.BeginsBlocks != null)
-                                {
-                                        var block = new CollisionSequenceBlock(options.BeginsBlocks, guards, predicates);
-                                        script.Scheduler?.ScheduleCollisionEventSequence(block, LunyCollisionEvent.OnCollisionEntered);
-                                }
-                                if (options.UpdatesBlocks != null)
-                                {
-                                        var block = new CollisionSequenceBlock(options.UpdatesBlocks, guards, predicates);
-                                        script.Scheduler?.ScheduleCollisionEventSequence(block, LunyCollisionEvent.OnCollisionUpdate);
-                                }
-                                if (options.EndsBlocks != null)
-                                {
-                                        var block = new CollisionSequenceBlock(options.EndsBlocks, guards, predicates);
-                                        script.Scheduler?.ScheduleCollisionEventSequence(block, LunyCollisionEvent.OnCollisionExited);
-                                }
-                        }
-                        script.FinalizeBuilderToken(token);
-                }
-                private static Predicate<LunyCollider>[] BuildCollisionPredicates(in PhysicsEventFilterOptions filter)
-                {
-                        var count = 0;
-                        if (filter.NamePredicate != null)
-                                count++;
-                        if (filter.TagPredicate != null)
-                                count++;
-                        if (filter.LayerPredicate != null)
-                                count++;
-                        if (filter.TypePredicate != null)
-                                count++;
-                        if (count == 0)
-                                return null;
-                        var predicates = new Predicate<LunyCollider>[count];
-                        var i = 0;
-                        if (filter.NamePredicate != null)
-                                predicates[i++] = filter.NamePredicate;
-                        if (filter.TagPredicate != null)
-                                predicates[i++] = filter.TagPredicate;
-                        if (filter.LayerPredicate != null)
-                                predicates[i++] = filter.LayerPredicate;
-                        if (filter.TypePredicate != null)
-                                predicates[i++] = filter.TypePredicate;
-                        return predicates;
-                }
-                private static Predicate<LunyCollider>[] BuildTriggerPredicates(in PhysicsEventFilterOptions filter)
-                {
-                        var count = 0;
-                        if (filter.Names != null)
-                                count++;
-                        if (filter.Tags != null)
-                                count++;
-                        if (filter.Layers != null || filter.LayerMask.HasValue)
-                                count++;
-                        if (filter.ComponentTypes != null)
-                                count++;
-                        if (count == 0)
-                                return null;
-                        var predicates = new Predicate<LunyCollider>[count];
-                        var i = 0;
-                        if (filter.Names != null)
-                                predicates[i++] = BlockExecutePredicates.ForNames(filter.Names);
-                        if (filter.Tags != null)
-                                predicates[i++] = BlockExecutePredicates.ForTags(filter.Tags);
-                        if (filter.Layers != null)
-                                predicates[i++] = BlockExecutePredicates.ForLayers(filter.Layers);
-                        else if (filter.LayerMask.HasValue)
-                                predicates[i++] = BlockExecutePredicates.ForLayerMask(filter.LayerMask.Value);
-                        if (filter.ComponentTypes != null)
-                                predicates[i++] = BlockExecutePredicates.ForComponentTypes(filter.ComponentTypes);
-                        return predicates;
-                }
-                private static EventGuard[] BuildGuards(Double cooldownInSeconds)
-                {
-                        if (cooldownInSeconds <= 0.0)
-                                return null;
-                        return new EventGuard[] { new CooldownGuard<T>(cooldownInSeconds, LunyEngine.Instance.Time) };
                 }
         }
-        // â”€â”€ Extension methods (mutual exclusivity for Masked) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-        public static class OnCollisionEventBuilderMaskedExtensions
+        public static class TransformRotateBuilderExtensions
         {
-                /// <summary>
-                /// Only react when the other object's layer is included in the given bitmask.
-                /// Mutually exclusive with Layered() â€” unavailable after Layered() is called.
-                /// </summary>
-                public static OnPhysicsEventBuilder<CollisionBuilderMasked> Masked<T>(
-                        this OnPhysicsEventBuilder<T> b, Int32 layerMask)
-                        where T : struct, ICollisionBuilderStart
+                /// <summary> Rotation speed in degrees per second (for <c>Do()</c>) or lerp factor (for <c>Lerp()</c>/<c>Slerp()</c>). </summary>
+                public static TransformRotateBuilder<TransformBuilderReady> Speed<T>(this TransformRotateBuilder<T> b, Double speed)
+                        where T : struct, ITransformBuilderReady
                 {
                         var options = b.Options;
-                        options.Filter.LayerMask = layerMask;
-                        options.Filter.LayerPredicate = BlockExecutePredicates.ForLayerMask(layerMask);
-                        return new OnPhysicsEventBuilder<CollisionBuilderMasked>(b.Script, options, b.Token);
+                        options.Speed = speed;
+                        return new TransformRotateBuilder<TransformBuilderReady>(b.Script, options, b.Token);
                 }
-                /// <summary>
-                /// Only react when the other object's layer name matches one of the given names (OR logic).
-                /// Mutually exclusive with Layered() â€” unavailable after Layered() is called.
-                /// </summary>
-                public static OnPhysicsEventBuilder<CollisionBuilderMasked> Masked<T>(
-                        this OnPhysicsEventBuilder<T> b, params String[] layerNames)
-                        where T : struct, ICollisionBuilderStart
+                /// <summary> Minimum angle threshold in degrees before rotation begins (prevents micro-jitter). </summary>
+                public static TransformRotateBuilder<TransformBuilderReady> DeadZone<T>(this TransformRotateBuilder<T> b, Double deadZone)
+                        where T : struct, ITransformBuilderReady
                 {
                         var options = b.Options;
-                        options.Filter.Layers = layerNames;
-                        options.Filter.LayerPredicate = BlockExecutePredicates.ForLayers(layerNames);
-                        return new OnPhysicsEventBuilder<CollisionBuilderMasked>(b.Script, options, b.Token);
+                        options.DeadZone = deadZone;
+                        return new TransformRotateBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Multiplies delta time; larger values produce faster approach. </summary>
+                public static TransformRotateBuilder<TransformBuilderReady> Responsiveness<T>(this TransformRotateBuilder<T> b, Double responsiveness)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.Responsiveness = responsiveness;
+                        return new TransformRotateBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Prevents rotation around the X axis. </summary>
+                public static TransformRotateBuilder<TransformBuilderReady> LockX<T>(this TransformRotateBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.LockX = true;
+                        return new TransformRotateBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Prevents rotation around the Y axis. </summary>
+                public static TransformRotateBuilder<TransformBuilderReady> LockY<T>(this TransformRotateBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.LockY = true;
+                        return new TransformRotateBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Prevents rotation around the Z axis. </summary>
+                public static TransformRotateBuilder<TransformBuilderReady> LockZ<T>(this TransformRotateBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.LockZ = true;
+                        return new TransformRotateBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Angular step (RotateTowards) — speed is degrees per second. </summary>
+                public static TransformRotateTowardsBlock Do<T>(this TransformRotateBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var o = b.Options;
+                        var block = TransformRotateTowardsBlock.Create(o.Target, o.Speed, o.DeadZone, o.LockX, o.LockY, o.LockZ, o.Responsiveness);
+                        b.Script.FinalizeBuilderToken(b.Token);
+                        return block;
+                }
+                /// <summary> Lerp interpolation — speed is the lerp factor. </summary>
+                public static TransformRotateTowardsLerpBlock Lerp<T>(this TransformRotateBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var o = b.Options;
+                        var block = TransformRotateTowardsLerpBlock.Create(o.Target, o.Speed, o.DeadZone, o.LockX, o.LockY, o.LockZ, o.Responsiveness,
+                                false);
+                        b.Script.FinalizeBuilderToken(b.Token);
+                        return block;
+                }
+                /// <summary> Spherical interpolation — speed is the slerp factor. </summary>
+                public static TransformRotateTowardsLerpBlock Slerp<T>(this TransformRotateBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var o = b.Options;
+                        var block = TransformRotateTowardsLerpBlock.Create(o.Target, o.Speed, o.DeadZone, o.LockX, o.LockY, o.LockZ, o.Responsiveness,
+                                true);
+                        b.Script.FinalizeBuilderToken(b.Token);
+                        return block;
+                }
+        }
+}
+===SCALE===
+using LunyScript.Blocks;
+using System;
+namespace LunyScript.ApiBuilders.Transform
+{
+        /// <summary>
+        /// Fluent builder for Scale-Towards blocks.
+        /// Usage: Transform.ScaleTowards(targetScale).Speed(1).Responsiveness(2).LockY().Do()
+        ///        Transform.ScaleTowards(targetScale).Speed(1).Lerp()
+        ///        Transform.ScaleTowards(targetScale).Speed(1).Slerp()
+        /// </summary>
+        public readonly struct TransformScaleBuilder<T> where T : struct, ITransformBuilderState
+        {
+                internal readonly Script Script;
+                internal readonly TransformTowardsVariableOptions Options;
+                internal readonly BuilderToken Token;
+                internal TransformScaleBuilder(Script script, TransformTowardsVariableOptions options, BuilderToken token)
+                {
+                        Script = script;
+                        Options = options;
+                        Token = token;
+                }
+        }
+        public static class TransformScaleBuilderExtensions
+        {
+                /// <summary> Scale speed in units per second (for <c>Do()</c>) or lerp factor (for <c>Lerp()</c>/<c>Slerp()</c>). </summary>
+                public static TransformScaleBuilder<TransformBuilderReady> Speed<T>(this TransformScaleBuilder<T> b, Double speed)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.Speed = speed;
+                        return new TransformScaleBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Minimum scale-distance threshold before scaling begins (prevents micro-jitter). </summary>
+                public static TransformScaleBuilder<TransformBuilderReady> DeadZone<T>(this TransformScaleBuilder<T> b, Double deadZone)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.DeadZone = deadZone;
+                        return new TransformScaleBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Multiplies delta time; larger values produce faster approach. </summary>
+                public static TransformScaleBuilder<TransformBuilderReady> Responsiveness<T>(this TransformScaleBuilder<T> b, Double responsiveness)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.Responsiveness = responsiveness;
+                        return new TransformScaleBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Prevents scaling along the X axis. </summary>
+                public static TransformScaleBuilder<TransformBuilderReady> LockX<T>(this TransformScaleBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.LockX = true;
+                        return new TransformScaleBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Prevents scaling along the Y axis. </summary>
+                public static TransformScaleBuilder<TransformBuilderReady> LockY<T>(this TransformScaleBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.LockY = true;
+                        return new TransformScaleBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Prevents scaling along the Z axis. </summary>
+                public static TransformScaleBuilder<TransformBuilderReady> LockZ<T>(this TransformScaleBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.LockZ = true;
+                        return new TransformScaleBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Linear step (MoveTowards per-component) — speed is units per second. </summary>
+                public static TransformScaleTowardsBlock Do<T>(this TransformScaleBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var o = b.Options;
+                        var block = TransformScaleTowardsBlock.Create(o.TargetScale, o.Speed, o.DeadZone, o.LockX, o.LockY, o.LockZ, o.Responsiveness);
+                        b.Script.FinalizeBuilderToken(b.Token);
+                        return block;
+                }
+                /// <summary> Lerp interpolation — speed is the lerp factor. </summary>
+                public static TransformScaleTowardsLerpBlock Lerp<T>(this TransformScaleBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var o = b.Options;
+                        var block = TransformScaleTowardsLerpBlock.Create(o.TargetScale, o.Speed, o.DeadZone, o.LockX, o.LockY, o.LockZ, o.Responsiveness,
+                                false);
+                        b.Script.FinalizeBuilderToken(b.Token);
+                        return block;
+                }
+                /// <summary> Spherical interpolation — speed is the slerp factor. </summary>
+                public static TransformScaleTowardsLerpBlock Slerp<T>(this TransformScaleBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var o = b.Options;
+                        var block = TransformScaleTowardsLerpBlock.Create(o.TargetScale, o.Speed, o.DeadZone, o.LockX, o.LockY, o.LockZ, o.Responsiveness,
+                                true);
+                        b.Script.FinalizeBuilderToken(b.Token);
+                        return block;
+                }
+        }
+}
+===LOOKAT===
+using Luny.Engine.Bridge;
+using LunyScript.Blocks;
+namespace LunyScript.ApiBuilders.Transform
+{
+        /// <summary>
+        /// Fluent builder for <see cref="TransformLookAtBlock"/>.
+        /// Usage: Transform.LookAt(target).WorldUp(v).LockX().Do()
+        /// </summary>
+        public readonly struct TransformLookAtBuilder<T> where T : struct, ITransformBuilderState
+        {
+                internal readonly Script Script;
+                internal readonly TransformLookAtOptions Options;
+                internal readonly BuilderToken Token;
+                internal TransformLookAtBuilder(Script script, TransformLookAtOptions options, BuilderToken token)
+                {
+                        Script = script;
+                        Options = options;
+                        Token = token;
+                }
+        }
+        public static class TransformLookAtBuilderExtensions
+        {
+                /// <summary> Overrides the world-up vector used when computing the look rotation. </summary>
+                public static TransformLookAtBuilder<TransformBuilderReady> WorldUp<T>(this TransformLookAtBuilder<T> b, LunyVector3 worldUp)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.WorldUp = worldUp;
+                        return new TransformLookAtBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Locks the X axis: prevents the look direction from changing on the X axis. </summary>
+                public static TransformLookAtBuilder<TransformBuilderReady> LockX<T>(this TransformLookAtBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.AxisLock = new LunyVector3(0d, options.AxisLock.Y, options.AxisLock.Z);
+                        return new TransformLookAtBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Locks the Y axis: prevents the look direction from changing on the Y axis. </summary>
+                public static TransformLookAtBuilder<TransformBuilderReady> LockY<T>(this TransformLookAtBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.AxisLock = new LunyVector3(options.AxisLock.X, 0d, options.AxisLock.Z);
+                        return new TransformLookAtBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Locks the Z axis: prevents the look direction from changing on the Z axis. </summary>
+                public static TransformLookAtBuilder<TransformBuilderReady> LockZ<T>(this TransformLookAtBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var options = b.Options;
+                        options.AxisLock = new LunyVector3(options.AxisLock.X, options.AxisLock.Y, 0d);
+                        return new TransformLookAtBuilder<TransformBuilderReady>(b.Script, options, b.Token);
+                }
+                /// <summary> Finalizes the builder and returns the executable block. </summary>
+                public static TransformLookAtBlock Do<T>(this TransformLookAtBuilder<T> b)
+                        where T : struct, ITransformBuilderReady
+                {
+                        var block = TransformLookAtBlock.Create(b.Options.Target, b.Options.WorldUp, b.Options.AxisLock);
+                        b.Script.FinalizeBuilderToken(b.Token);
+                        return block;
                 }
         }
 }

@@ -18,7 +18,7 @@ namespace Sistato.LunyScripts
 
 			On.FrameUpdate(
 				If(!isDead).Then(
-					Transform.MoveTowards(player).Speed(3).LockY().Do(),
+					Transform.MoveTowards(player).Speed(3).LockY(),
 					Transform.RotateTowards(player).Responsiveness(0.05).Slerp()
 				)
 			);
