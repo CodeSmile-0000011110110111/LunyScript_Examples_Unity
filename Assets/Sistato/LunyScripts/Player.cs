@@ -25,10 +25,30 @@ namespace Sistato.LunyScripts
 			// Counter("counter in frames").In(60).Frames().Do(Debug.Log("counter in frames"));
 			// Counter("counter every frames").Every(60).Frames().Do(Debug.Log("counter every frames"));
 
-			Every(2).Heartbeats().Do(Debug.Log("every even beat"));
-			Every(2).Heartbeats().DelayBy(1).Do(Debug.Log("every odd beat"));
-			Every(2).Frames().Do(Debug.Log("every even frame"));
-			Every(2).Frames().DelayBy(1).Do(Debug.Log("every odd frame"));
+			// Counter("sdf").Every(3).Frames().Do();
+			// Every(3).Frames().Do();
+
+			// Every(2).Heartbeats().Do(Debug.Log("every even beat"));
+			// Every(2).Heartbeats().Offset(1).Do(Debug.Log("every odd beat"));
+			// Every(2).Frames().Do(Debug.Log("every even frame"));
+			// Every(2).Frames().Offset(1).Do(Debug.Log("every odd frame"));
+
+
+			var forRoutine = Coroutine("for")
+				.For(30)
+				.Frames()
+				.WhenStarted(Debug.Log("for STARTED"))
+				.WhenPaused(Debug.Log("for PAUSED"))
+				.WhenResumed(Debug.Log("for RESUMED"))
+				.WhenStopped(Debug.Log("for STOPPED"))
+				.WhenElapsed(Debug.Log("for ELAPSED"));
+
+
+			// Counter("for pause").Every(8).Frames().Do(forRoutine.Pause());
+			// Counter("for resume").Every(10).Frames().Do(forRoutine.Resume());
+			// Counter("for stop").In(12).Frames().Do(forRoutine.Stop());
+			// Counter("for start").In(15).Frames().Do(forRoutine.Start());
+
 
 			/*
 			On.Collision
