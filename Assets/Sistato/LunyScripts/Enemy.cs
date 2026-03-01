@@ -16,24 +16,24 @@ namespace Sistato.LunyScripts
 			var isDead = Var["is dead"];
 
 			On.FrameUpdate(
-				If(!isDead).Then(
-					Transform.MoveTowards(player).Speed(3).LockY(),
-					Transform.RotateTowards(player).Responsiveness(0.05).Slerp()
-				)
+				If(!isDead)
+					.Then(
+						Transform.MoveTowards(player).Speed(3).LockY(),
+						Transform.RotateTowards(player).Responsiveness(0.05).Slerp()
+					)
 			);
 
 			//Timer("speed bump").Every(1).Seconds().Do(Var["speed"].Inc());
 
-			TimerBuilderStartEx.Do(TimerBuilderStartEx.Seconds(Timer("kill")
-						.In(12)), isDead.Set(true),
+			Timer("kill")
+				.In(12)
+				.Seconds()
+				.Do(isDead.Set(true),
 					Component.Disable(typeof(RigidbodyStayUpright)),
-					Component.Disable(typeof(GooglyEyesFocus))
-					);
-			TimerBuilderStartEx.Do(TimerBuilderStartEx.Seconds(Timer("disappear").In(18)), Component.Disable(typeof(CapsuleCollider)));
+					Component.Disable(typeof(GooglyEyesFocus)));
 
-			TimerBuilderStartEx.Do(TimerBuilderStartEx.Seconds(Timer("destroy").In(20)), Object.Destroy());
-
-
+			Timer("disappear").In(18).Seconds().Do(Component.Disable(typeof(CapsuleCollider)));
+			Timer("destroy").In(20).Seconds().Do(Object.Destroy());
 		}
 	}
 }
