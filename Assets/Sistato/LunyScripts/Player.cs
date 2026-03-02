@@ -14,7 +14,7 @@ namespace Sistato.LunyScripts
 				Transform.ShiftBy(Input.Direction("Move"), Speed)
 			);
 
-			On.Collision.Layered("Enemy").Cooldown(1).Begins(Debug.Log(">>>>> OUCH !!! <<<<<<"));
+			On.Collision().Layered("Enemy").Cooldown(1).Begins(Debug.Log(">>>>> OUCH !!! <<<<<<"));
 
 			Run(MyActionMethod());
 			Run(MyVoidMethod);
