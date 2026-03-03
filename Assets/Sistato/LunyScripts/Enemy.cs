@@ -25,15 +25,15 @@ namespace Sistato.LunyScripts
 
 			//Timer("speed bump").Every(1).Seconds().Do(Var["speed"].Inc());
 
-			Timer("kill")
+			Coroutine("kill")
 				.In(12)
 				.Seconds()
 				.Do(isDead.Set(true),
 					Component.Disable(typeof(RigidbodyStayUpright)),
 					Component.Disable(typeof(GooglyEyesFocus)));
 
-			Timer("disappear").In(18).Seconds().Do(Component.Disable(typeof(CapsuleCollider)));
-			Timer("destroy").In(20).Seconds().Do(Object.Destroy());
+			Coroutine("disappear").In(18).Seconds().Do(Component.Disable(typeof(CapsuleCollider)));
+			Coroutine("destroy").In(20).Seconds().Do(Object.Destroy());
 		}
 	}
 }

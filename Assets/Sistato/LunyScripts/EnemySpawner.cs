@@ -12,7 +12,7 @@ namespace Sistato.LunyScripts
 			var enemiesFolder = objects.Find("Enemies");
 
 			var createEnemy = Object.Create("Enemy").From("Assets/Sistato/Prefabs/Enemy").Parent(enemiesFolder);
-			Timer("Spawn Enemy").Every(.25).Seconds().Do(createEnemy, createEnemy, createEnemy);
+			Coroutine("Spawn Enemy").Every(.25).Seconds().Do(createEnemy, createEnemy, createEnemy);
 		}
 	}
 }
