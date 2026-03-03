@@ -28,12 +28,12 @@ namespace Sistato.LunyScripts
 			Coroutine("kill")
 				.In(12)
 				.Seconds()
-				.Do(isDead.Set(true),
+				.WhenElapsed(isDead.Set(true),
 					Component.Disable(typeof(RigidbodyStayUpright)),
 					Component.Disable(typeof(GooglyEyesFocus)));
 
-			Coroutine("disappear").In(18).Seconds().Do(Component.Disable(typeof(CapsuleCollider)));
-			Coroutine("destroy").In(20).Seconds().Do(Object.Destroy());
+			Coroutine("disappear").In(18).Seconds().WhenElapsed(Component.Disable(typeof(CapsuleCollider)));
+			Coroutine("destroy").In(20).Seconds().WhenElapsed(Object.Destroy());
 		}
 	}
 }
