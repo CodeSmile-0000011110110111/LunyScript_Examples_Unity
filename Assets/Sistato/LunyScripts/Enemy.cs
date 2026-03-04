@@ -11,7 +11,7 @@ namespace Sistato.LunyScripts
 		{
 			var engine = LunyEngine.Instance;
 			var objects = engine.Objects;
-			var player = objects.Get("Player");
+			var player = objects.GetCached("Player");
 
 			var isDead = Var["is dead"];
 
