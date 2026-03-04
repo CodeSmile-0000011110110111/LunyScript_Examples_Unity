@@ -31,4 +31,12 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cblocks_005Cvariable/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cblocks_005Cvariables/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Ccore/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cruntime/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cruntime/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi_005Cblocks/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi_005Ccoroutines/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi_005Cevents/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi_005Cflow/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi_005Cinput/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi_005Cobject/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi_005Ctransform/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Cscriptapi/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

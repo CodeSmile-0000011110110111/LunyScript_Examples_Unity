@@ -9,10 +9,19 @@ namespace Sistato.LunyScripts
 		{
 			const Single Speed = 9f;
 
+			When.InputAction("Move").Performing(Transform.ShiftBy(Input.Direction("Move"), Speed));
+			When.InputAction("Look").Performing(Transform.SetLocalRotation(Input.Rotation("Look")));
+
+			//InputAction("Move").WhenStarted().WhenPerformed().WhenCanceled().WhilePerforming();
+			//When.InputAction("Move").Started().Performed().Canceled();
+			//While.InputAction("Move").Performing();
+
+			/*
 			On.FrameUpdate(
 				Transform.SetLocalRotation(Input.Rotation("Look")),
 				Transform.ShiftBy(Input.Direction("Move"), Speed)
 			);
+			*/
 
 			On.Collision().Layered("Enemy").Cooldown(1).Begins(Debug.Log(">>>>> OUCH !!! <<<<<<"));
 
