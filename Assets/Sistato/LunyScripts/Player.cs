@@ -13,11 +13,11 @@ namespace Sistato.LunyScripts
 			When.InputAction("Look").Performing(Transform.SetLocalRotation(Input.Rotation("Look")));
 
 			var cameraMode = Var["CameraMode"];
+			var followCameraName = "CineCam (Flat Iso Player Follow)";
 			When.InputAction("ToggleCamera")
-				.Performed(
-					If(cameraMode != 1)
-						.Then(Debug.Log("ENTER topdown"), Object.Disable("CineCam (Flat Iso Player Follow)"), cameraMode.Set(1))
-						.Else(Debug.Log("EXIT topdown"), Object.Enable("CineCam (Flat Iso Player Follow)")), cameraMode.Set(0));
+				.Performed(If(cameraMode != 1)
+						.Then(Debug.Log("ENTER topdown"), cameraMode.Inc(), Object.Disable(followCameraName))
+						.Else(Debug.Log("EXIT topdown"), cameraMode.Dec(), Object.Enable(followCameraName)));
 
 			//InputAction("Move").WhenStarted().WhenPerformed().WhenCanceled().WhilePerforming();
 			//When.InputAction("Move").Started().Performed().Canceled();
