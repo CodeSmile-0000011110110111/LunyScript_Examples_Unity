@@ -504,7 +504,7 @@
                 {
                     "name": "",
                     "id": "f40b08f6-6718-4c5e-98dd-755daa370ff5",
-                    "path": "<Keyboard>/backquote",
+                    "path": "<Keyboard>/f1",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -526,7 +526,7 @@
                 {
                     "name": "",
                     "id": "37ce229b-de69-4bf0-939c-586661bd7ac2",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/f2",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
