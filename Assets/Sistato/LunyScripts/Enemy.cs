@@ -1,6 +1,7 @@
 ﻿using Luny;
 using LunyScript;
 using LunyScript.Unity;
+using LunyScript.Unity.Blocks.Component;
 using UnityEngine;
 
 namespace Sistato.LunyScripts
