@@ -300,12 +300,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "de.codesmile.lunyscratch_unity": {
-      "version": "file:de.codesmile.lunyscratch_unity",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "de.codesmile.lunyscript": {
       "version": "file:de.codesmile.lunyscript",
       "depth": 0,
