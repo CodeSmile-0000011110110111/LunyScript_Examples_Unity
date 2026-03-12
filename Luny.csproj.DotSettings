@@ -6,5 +6,6 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Cluny_005Cengine_005Cbridge_005Cidentity/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Cluny_005Cengine_005Cbridge_005Cphysics/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Cluny_005Cengine_005Cbridge_005Cstructs/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Cluny_005Cexceptions/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Cluny_005Ctime/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Cluny_005Cvariables/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

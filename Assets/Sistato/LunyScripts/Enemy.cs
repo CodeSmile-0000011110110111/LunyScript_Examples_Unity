@@ -1,7 +1,8 @@
 ﻿using Luny;
 using LunyScript;
+using LunyScript.Api;
 using LunyScript.Unity;
-using LunyScript.Unity.Blocks.Component;
+using LunyScript.Unity.Blocks;
 using UnityEngine;
 
 namespace Sistato.LunyScripts
