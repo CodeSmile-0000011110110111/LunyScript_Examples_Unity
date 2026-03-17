@@ -1,7 +1,7 @@
 ﻿using Luny;
 using LunyScript;
 using LunyScript.Api;
-using LunyScript.Unity;
+using LunyScript.Blocks;
 using LunyScript.Unity.Blocks;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace Sistato.LunyScripts
 {
 	public class Enemy : Script
 	{
-		public override void Build(ScriptContext context)
+		public override void Build(ScriptBuildContext context)
 		{
 			var engine = LunyEngine.Instance;
 			var objects = engine.Objects;
@@ -36,6 +36,21 @@ namespace Sistato.LunyScripts
 
 			Coroutine("disappear").In(18).Seconds().WhenElapsed(Component.Disable(typeof(CapsuleCollider)));
 			Coroutine("destroy").In(20).Seconds().WhenElapsed(Object.Destroy());
+
+			On.Enabled(EnableMessages());
+
+			On.Disabled(DisableMessages());
 		}
+
+		private ActionBlock[] EnableMessages() => new[]
+		{
+			Debug.Log("I'm back!"),
+			Debug.Log("I told you so!"),
+		};
+		private ActionBlock[] DisableMessages() => new[]
+		{
+			Debug.Log("I'll be back!"),
+			Debug.Log("Nooooo.... (sinks into hot lava)"),
+		};
 	}
 }

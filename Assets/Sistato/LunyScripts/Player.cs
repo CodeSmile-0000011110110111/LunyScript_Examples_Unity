@@ -6,7 +6,7 @@ namespace Sistato.LunyScripts
 {
 	public class Player : Script
 	{
-		public override void Build(ScriptContext context)
+		public override void Build(ScriptBuildContext context)
 		{
 			const Single Speed = 9f;
 

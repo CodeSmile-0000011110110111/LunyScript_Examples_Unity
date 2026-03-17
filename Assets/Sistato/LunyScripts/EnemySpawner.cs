@@ -6,7 +6,7 @@ namespace Sistato.LunyScripts
 {
 	public class EnemySpawner : Script
 	{
-		public override void Build(ScriptContext context)
+		public override void Build(ScriptBuildContext context)
 		{
 			var engine = LunyEngine.Instance;
 			var objects = engine.Objects;
