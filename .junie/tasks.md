@@ -1,5 +1,14 @@
 # Current Status
 
+# Top 10
+
+- Inspector assigned LunyScript
+- Inspector assign values and references
+- Script run options eg pattern matching
+- For (etc) => support passing script variables
+- detect "unfinished" blocks, not just builders (stray blocks) 
+
+
 Build a minimal, playable Brotato clone in 3D
 
 ## Thoughts
