@@ -1,7 +1,6 @@
 ﻿using Luny;
 using LunyScript;
 using LunyScript.Api;
-using LunyScript.Blocks;
 using LunyScript.Unity.Blocks;
 using UnityEngine;
 
@@ -36,25 +35,6 @@ namespace Sistato.LunyScripts
 
 			Coroutine("disappear").In(18).Seconds().WhenElapsed(Component.Disable(typeof(CapsuleCollider)));
 			Coroutine("destroy").In(20).Seconds().WhenElapsed(Object.Destroy());
-
-
-			var prefabPath = "Assets/Prefabs/Enemy";
-			for (var i = 0; i < 10; i++)
-			{
-				var name = $"Enemy_{i+1}";
-				var createEnemy = Object.Create(name).With(prefabPath);
-
-				On.Ready(createEnemy);
-
-			}
-
-			var enemyCount = Var.Define("num enemies to spawn", 3);
-			On.Enabled(For(enemyCount).Do(
-				Object.Create("Enemy").With(prefabPath)),
-				enemyCount.Add(2)
-			);
-
 		}
-
 	}
 }

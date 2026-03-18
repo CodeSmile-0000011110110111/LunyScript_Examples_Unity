@@ -1,12 +1,14 @@
-# Current Status
+# New Tasks
 
-# Top 10
-
+- update "times less than GDScript" since that changed
 - Inspector assigned LunyScript
 - Inspector assign values and references
 - Script run options eg pattern matching
-- For (etc) => support passing script variables
 - detect "unfinished" blocks, not just builders (stray blocks) 
+
+# DONE
+- [X] For (etc) => support passing script variables
+- [X] Write first draft of manual
 
 
 Build a minimal, playable Brotato clone in 3D
@@ -15,21 +17,6 @@ Build a minimal, playable Brotato clone in 3D
 - compare LunyScript also with its VisualScripting counterpart
 
 ## Next Steps (Sprint)
-- [X] BuilderToken: use MarkFinished to finalize "open" builders provided they are in a finalizable state, then remove trailing Do() pattern
-- [X] Timer: has no When* event blocks
-- [X] Counter: has no When* event blocks
-- [X] BUG: Coroutine.For() never ends, Every().XXX.Do() ends after time -- mixup?
-- [X] BUG: Timer() TimeScale is not respected
-- [X] BUG: Timer Every ms does not run event blocks
-- [X] BUG: IfBlockBuilder calls its own Execute every frame, building the block every time
-- [X] ISSUE: Uninitialized variable + arithmetics fails because null != 0
-- [X] Problem: VariableBlock wraps any type, we can't rule out nonsensical uses (ie Vector2 where Quaternion is expected)
-- [X] Scheduler: should hold ISequenceBlock to be more flexible
-- [X] Input: use event phases and pass this to service base, avoids clearing state
-- [X] Input: add handling of started, performed, canceled events
-- [X] Input: add When.InputAction API
-- [X] CollisionBuilder: Begins/Ends/Update should not have Layered/Tagged/Named/etc
-- [X] API: Every* adds little over Counter() => could merge "DelayBy" with Counter? At least it omits the "Counter()." part
 - 
 - [ ] BUG: Coroutine.Every frames/heartbeats technically correct but semantically wrong: "every 8 frames" => 8 + 8 = 17! (verify)
 - [ ] BUG: enabling game object does not start coroutines
@@ -160,6 +147,36 @@ Build a minimal, playable Brotato clone in 3D
     - .. a way for me to very quickly get an overview of what's changed, and view the diffs, and perhaps even comment on them
 
 ## DONE
+
+### CW12-2026 Mar
+- Write first draft of manual
+
+### CW11-2026 Mar
+- Add Local Multiplayer Input support, device pairing, Smoke Test
+- Add DocFX manual/API workflow & deployment, initial pages
+
+### CW10-2026 Mar
+- Smoke Tests: Physics, Objects, Coroutines
+- When.Input Events
+- API Builder review / overhaul
+- add VariableBlock<T>
+
+### CW09-2026 Mar
+- [X] BuilderToken: use MarkFinished to finalize "open" builders provided they are in a finalizable state, then remove trailing Do() pattern
+- [X] Timer: has no When* event blocks
+- [X] Counter: has no When* event blocks
+- [X] BUG: Coroutine.For() never ends, Every().XXX.Do() ends after time -- mixup?
+- [X] BUG: Timer() TimeScale is not respected
+- [X] BUG: Timer Every ms does not run event blocks
+- [X] BUG: IfBlockBuilder calls its own Execute every frame, building the block every time
+- [X] ISSUE: Uninitialized variable + arithmetics fails because null != 0
+- [X] Problem: VariableBlock wraps any type, we can't rule out nonsensical uses (ie Vector2 where Quaternion is expected)
+- [X] Scheduler: should hold ISequenceBlock to be more flexible
+- [X] Input: use event phases and pass this to service base, avoids clearing state
+- [X] Input: add handling of started, performed, canceled events
+- [X] Input: add When.InputAction API
+- [X] CollisionBuilder: Begins/Ends/Update should not have Layered/Tagged/Named/etc
+- [X] API: Every* adds little over Counter() => could merge "DelayBy" with Counter? At least it omits the "Counter()." part
 
 ### CW08-2026 Feb
 - [X] Luny: add Variable<T> for all value types
