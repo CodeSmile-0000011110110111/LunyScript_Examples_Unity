@@ -11,18 +11,18 @@ namespace Sistato.LunyScripts
 			const Single Speed = 9f;
 
 			When.Input.Action("Move")
-				.Begins(Debug.Log("Move begins ..."))
-				.Changes(Debug.Log("Move value changes ..."))
-				.Continues(Transform.ShiftBy(Input.Direction("Move"), Speed))
-				.Ends(Debug.Log("Move ends ..."));
-			When.Input.Action("Look").Continues(Transform.SetLocalRotation(Input.Rotation("Look")));
+				.Started(Debug.Log("Move started ..."))
+				.Performed(Debug.Log("Move performed ..."))
+				.Continuing(Debug.Log("Moving ..."), Transform.ShiftBy(Input.Direction("Move"), Speed))
+				.Ended(Debug.Log("Move ended ..."));
+			When.Input.Action("Look").Continuing(Transform.SetLocalRotation(Input.Rotation("Look")));
 
 			var cameraMode = Var["CameraMode"];
 			cameraMode.Set(0);
 
 			var followCameraName = "CineCam (Flat Iso Player Follow)";
 			When.Input.Action("ToggleCamera")
-				.Changes(If(cameraMode != 1)
+				.Performed(If(cameraMode != 1)
 					.Then(Debug.Log("ENTER topdown"), cameraMode.Inc(), Object.Disable(followCameraName))
 					.Else(Debug.Log("EXIT topdown"), cameraMode.Dec(), Object.Enable(followCameraName)));
 

@@ -1,5 +1,6 @@
 # New Tasks
 
+- When.Input.Action.Continues => When.Input.Performing
 - Inspector: directly assign LunyScript
 - Inspector assigned values and references passed into script
 - Script run options eg relax name matching
