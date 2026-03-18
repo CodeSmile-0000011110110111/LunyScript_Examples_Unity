@@ -1,16 +1,19 @@
 # New Tasks
 
-- When.Input.Action.Continues => When.Input.Performing
+- add When.Quitting event
+
+# Workflow Improvements
 - Inspector: directly assign LunyScript
 - Inspector assigned values and references passed into script
 - Script run options eg relax name matching
 - detect "unfinished" blocks, not just builders (stray blocks)
 - Editor Window that lists variables (runtime-enabled UI)
-- add When.Quitting event
+- Implement the Create-Spawn<=>Despawn-Destroy lifecycle
 
 # DONE
 - [X] For (etc) => support passing script variables
 - [X] Write first draft of manual
+- [X] Collision & Input event rename for consistency
 
 
 Build a minimal, playable Brotato clone in 3D
