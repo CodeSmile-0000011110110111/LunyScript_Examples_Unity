@@ -1,10 +1,11 @@
 # New Tasks
 
-- update "times less than GDScript" since that changed
-- Inspector assigned LunyScript
-- Inspector assign values and references
-- Script run options eg pattern matching
-- detect "unfinished" blocks, not just builders (stray blocks) 
+- Inspector: directly assign LunyScript
+- Inspector assigned values and references passed into script
+- Script run options eg relax name matching
+- detect "unfinished" blocks, not just builders (stray blocks)
+- Editor Window that lists variables (runtime-enabled UI)
+- add When.Quitting event
 
 # DONE
 - [X] For (etc) => support passing script variables

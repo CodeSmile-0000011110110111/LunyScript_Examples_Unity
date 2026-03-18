@@ -37,7 +37,7 @@ namespace Sistato.LunyScripts
 			);
 			*/
 
-			On.Collision().Layered("Enemy").Cooldown(1).Begins(Debug.Log(">>>>> OUCH !!! <<<<<<"));
+			On.Collision().Layered("Enemy").Cooldown(1).Started(Debug.Log(">>>>> OUCH !!! <<<<<<"));
 
 			Run(MyActionMethod());
 			Run(MyVoidMethod);
