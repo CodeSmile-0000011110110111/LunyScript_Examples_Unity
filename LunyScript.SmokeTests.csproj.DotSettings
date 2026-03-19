@@ -4,4 +4,5 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Csmoketests_005Cinputmove/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Csmoketests_005Clifecycle/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Csmoketests_005Cobject_002Ecreate/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Csmoketests_005Cphysicsevents/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Csmoketests_005Cphysicsevents/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=packages_005Cde_002Ecodesmile_002Elunyscript_005Clunyscript_005Csmoketests_005Cvariables/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

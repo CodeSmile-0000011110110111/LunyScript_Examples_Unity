@@ -1,6 +1,8 @@
 # New Tasks
 
 - add When.Quitting event
+- implement VarHandle<T>/Variable<T> changed events
+- BUG: Debug.Log("msg" + variable) <== creates a variable block, doesn't log "msg"!
 
 # Workflow Improvements
 - Inspector: directly assign LunyScript
