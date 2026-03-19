@@ -11,6 +11,7 @@
 - detect "unfinished" blocks, not just builders (stray blocks)
 - Editor Window that lists variables (runtime-enabled UI)
 - Implement the Create-Spawn<=>Despawn-Destroy lifecycle
+- Scan API for missing/breaking uses of variables as block parameters
 
 # DONE
 - [X] For (etc) => support passing script variables
