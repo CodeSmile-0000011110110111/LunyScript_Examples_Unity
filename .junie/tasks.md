@@ -1,18 +1,33 @@
 # New Tasks
 
-- add When.Quitting event
+- DOC: add event usage examples
 - implement VarHandle<T>/Variable<T> changed events
 - BUG: Debug.Log("msg" + variable) <== creates a variable block, doesn't log "msg"!
 
-# Workflow Improvements
-- Inspector: directly assign LunyScript
-- Inspector assigned values and references passed into script
-- Script run options eg relax name matching
-- detect "unfinished" blocks, not just builders (stray blocks)
-- Editor Window that lists variables (runtime-enabled UI)
-- Implement the Create-Spawn<=>Despawn-Destroy lifecycle
-- Scan API for missing/breaking uses of variables as block parameters
-
+# Improvements
+- EDITING
+  - Inspector: directly assign LunyScript
+  - Inspector assigned values and references passed into script
+  - Script run options eg relax name matching
+- DIAGNOSTICS
+  - Editor Window that lists variables (runtime-enabled UI)
+  - Editor Window that lists block execution trace
+  - Ensure consistent naming/ToString of Block types
+  - Log runtime-value of variable blocks
+- CONSISTENCY
+  - Scan API for missing/breaking uses of variables as block parameters
+- ERROR HANDLING
+  - Verify that all "outside of runners" uses of blocks notify (use builder token everywhere, eg WhileBlock, Object.Create)
+  - Make type/name uses of BuilderToken consistent for error messages
+  - Make all exceptions/logs show script name + line number => eg double click opens user script, not Luny code
+- RUNTIME
+  - Implement the Create-Spawn<=>Despawn-Destroy lifecycle
+- EVENTS
+  - add When.Quitting
+- VARIABLE
+  - Add more math operations (Sqrt, Cos, Abs, etc)
+  - Integrate Variable<T> (needs design)
+    
 # DONE
 - [X] For (etc) => support passing script variables
 - [X] Write first draft of manual
