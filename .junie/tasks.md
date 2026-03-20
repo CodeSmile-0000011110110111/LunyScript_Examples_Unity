@@ -16,12 +16,14 @@
   - Log runtime-value of variable blocks
 - CONSISTENCY
   - Scan API for missing/breaking uses of variables as block parameters
+  - Scan builder APIs for inconsistencies eg repeated uses If().Then().Then() or wrong order If().ElseIf().Then() (missing Then)
 - ERROR HANDLING
   - Verify that all "outside of runners" uses of blocks notify (use builder token everywhere, eg WhileBlock, Object.Create)
   - Make type/name uses of BuilderToken consistent for error messages
   - Make all exceptions/logs show script name + line number => eg double click opens user script, not Luny code
 - RUNTIME
   - Implement the Create-Spawn<=>Despawn-Destroy lifecycle
+  - Expose the For() loop's counter value
 - EVENTS
   - add When.Quitting
 - VARIABLE
