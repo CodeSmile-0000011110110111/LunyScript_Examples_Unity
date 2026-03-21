@@ -1,5 +1,11 @@
 # New Tasks
 
+- website: update timeline, milestones
+- website: blog post, docs
+- DOC fix "advanced block uses" => for instance the ActionBlock[] arrays returned from the methods above 
+- runtime loops => repeated in control flow
+- control flow, loop with variables => var enemyCount = Var.("enemyCount", 3);
+- arithmetics, passing result to parameter => missing variable declaration
 - DOC: add event usage examples
 - implement VarHandle<T>/Variable<T> changed events
 - BUG: Debug.Log("msg" + variable) <== creates a variable block, doesn't log "msg"!
