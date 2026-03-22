@@ -1,11 +1,25 @@
 # New Tasks
 
-- website: update timeline, milestones
-- website: blog post, docs
-- DOC fix "advanced block uses" => for instance the ActionBlock[] arrays returned from the methods above 
-- runtime loops => repeated in control flow
-- control flow, loop with variables => var enemyCount = Var.("enemyCount", 3);
-- arithmetics, passing result to parameter => missing variable declaration
+NEXT FOCUS:
+- Window: Display Variables with live update
+  - Variable wrapper + manual data updates: https://share.google/aimode/LxIFNJCzq5Yne0SBN
+- Consider a refactor to a generic block runner where data is separated from execution (systems + component data)
+    - Execute/Evaluate could be an injected lambda respectively a reference to a predefined lambda representing the action
+    - would this make systems easier to create over fixed-function classes?
+    - https://share.google/aimode/O5xyoUW7LDUVEM9zz
+- Window: Show script block execution hierarchy (consider unification of scheduler sequences)
+  - show each event/block with the same name as API
+  - show current block parameters
+  - show result of conditions' Evaluate
+  - allow execute of actions
+
+- marketing: write "docs" blog post, send patreon, discussions thread, ask for feedback
+- doc: add "install" placeholder
+- DOC fixes
+  - [X] "advanced block uses" => for instance the ActionBlock[] arrays returned from the methods above
+  - [X] runtime loops => repeated in control flow
+  - [X] control flow, loop with variables => var enemyCount = Var.("enemyCount", 3);
+  - [X] arithmetics, passing result to parameter => missing variable declaration
 - DOC: add event usage examples
 - implement VarHandle<T>/Variable<T> changed events
 - BUG: Debug.Log("msg" + variable) <== creates a variable block, doesn't log "msg"!
@@ -35,11 +49,6 @@
 - VARIABLE
   - Add more math operations (Sqrt, Cos, Abs, etc)
   - Integrate Variable<T> (needs design)
-    
-# DONE
-- [X] For (etc) => support passing script variables
-- [X] Write first draft of manual
-- [X] Collision & Input event rename for consistency
 
 
 Build a minimal, playable Brotato clone in 3D
@@ -180,7 +189,11 @@ Build a minimal, playable Brotato clone in 3D
 ## DONE
 
 ### CW12-2026 Mar
-- Write first draft of manual
+- [X] Write first draft of manual:
+  - Getting Started, Script Anatomy, Advanced Block Usage, Control Flow, Events, Variables
+- [X] For (etc) => support passing script variables
+- [X] Collision & Input event rename for consistency
+- [X] website: remove timeline with milestones
 
 ### CW11-2026 Mar
 - Add Local Multiplayer Input support, device pairing, Smoke Test
