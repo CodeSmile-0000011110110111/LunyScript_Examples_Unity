@@ -4,6 +4,7 @@ NEXT FOCUS:
 - Window: Display Variables with live update
   - Variable wrapper + manual data updates: https://share.google/aimode/LxIFNJCzq5Yne0SBN
 - Consider a refactor to a generic block runner where data is separated from execution (systems + component data)
+    - (Likely overkill?) => refactor Scheduler instead to have a generic "Sequence" interface instead to avoid duplication per type
     - Execute/Evaluate could be an injected lambda respectively a reference to a predefined lambda representing the action
     - would this make systems easier to create over fixed-function classes?
     - https://share.google/aimode/O5xyoUW7LDUVEM9zz
@@ -20,7 +21,9 @@ NEXT FOCUS:
   - [X] runtime loops => repeated in control flow
   - [X] control flow, loop with variables => var enemyCount = Var.("enemyCount", 3);
   - [X] arithmetics, passing result to parameter => missing variable declaration
-- DOC: add event usage examples
+- DOC: 
+  - add event usage examples
+  - document Check and Run
 - implement VarHandle<T>/Variable<T> changed events
 - BUG: Debug.Log("msg" + variable) <== creates a variable block, doesn't log "msg"!
 
