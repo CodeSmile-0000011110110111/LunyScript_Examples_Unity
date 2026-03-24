@@ -1,8 +1,6 @@
 # New Tasks
 
 NEXT FOCUS:
-- Window: Display Variables with live update
-  - Variable wrapper + manual data updates: https://share.google/aimode/LxIFNJCzq5Yne0SBN
 - Consider a refactor to a generic block runner where data is separated from execution (systems + component data)
     - (Likely overkill?) => refactor Scheduler instead to have a generic "Sequence" interface instead to avoid duplication per type
     - Execute/Evaluate could be an injected lambda respectively a reference to a predefined lambda representing the action
@@ -13,6 +11,7 @@ NEXT FOCUS:
   - show current block parameters
   - show result of conditions' Evaluate
   - allow execute of actions
+- Variables Window: add Global/Instance toggle
 
 - marketing: write "docs" blog post, send patreon, discussions thread, ask for feedback
 - doc: add "install" placeholder
@@ -190,6 +189,10 @@ Build a minimal, playable Brotato clone in 3D
     - .. a way for me to very quickly get an overview of what's changed, and view the diffs, and perhaps even comment on them
 
 ## DONE
+
+### CW13-2026 Mar
+- [X] Window: Display Script Variables with live update, timestamps, value editing
+
 
 ### CW12-2026 Mar
 - [X] Write first draft of manual:
