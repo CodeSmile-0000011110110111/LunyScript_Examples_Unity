@@ -2,14 +2,10 @@
 
 DONE:
 - [X] refactored ScriptEventScheduler to generic event interface
-- [X] Variables Window: add Global/Instance toggle
+- [X] Variables Diagnostics Window: add Global/Instance toggle
+- [X] Blocks Diagnostics Window
 
 NEXT FOCUS:
-- Window: Show script block execution hierarchy (consider unification of scheduler sequences)
-  - show each event/block with the same name as API
-  - show current block parameters
-  - show result of conditions' Evaluate
-  - allow execute of actions
 - Sequence diagnostics
   - Coroutines: refactor runner, coroutines should be scheduled sequences in the respective lifecycle events for diagnostics => schedule a CoroutineSequenceBlock, which holds the event sequences
     - add the coroutine sequences to the tree with additional nestings
@@ -17,8 +13,12 @@ NEXT FOCUS:
     - then refactor the Input Actions in the tree
   - common interface for blocks containing blocks => If, While, etc. don't show theirs
   - Windows: refactor lifecycle and events to base class and merge with variables
-- API diagnostics: forward CallerMemberName to construct the API calls automatically
-
+- Block Diagnostics window:
+  - allow manual execute of blocks
+  - show condition's current evaluate state (true/false)
+  - make all block ToString consistent
+  - forward CallerMemberName to construct the API name automatically
+  - 
 
 - marketing: write "docs" blog post, send patreon, discussions thread, ask for feedback
 - doc: add "install" placeholder
