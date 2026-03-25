@@ -1,11 +1,9 @@
 # New Tasks
 
+DONE:
+- [X] refactores ScriptEventScheduler to generic event interface
+
 NEXT FOCUS:
-- Consider a refactor to a generic block runner where data is separated from execution (systems + component data)
-    - (Likely overkill?) => refactor Scheduler instead to have a generic "Sequence" interface instead to avoid duplication per type
-    - Execute/Evaluate could be an injected lambda respectively a reference to a predefined lambda representing the action
-    - would this make systems easier to create over fixed-function classes?
-    - https://share.google/aimode/O5xyoUW7LDUVEM9zz
 - Window: Show script block execution hierarchy (consider unification of scheduler sequences)
   - show each event/block with the same name as API
   - show current block parameters
@@ -48,6 +46,11 @@ NEXT FOCUS:
   - Expose the For() loop's counter value
 - EVENTS
   - add When.Quitting
+  - Consider a refactor to a generic block runner where data is separated from execution (systems + component data)
+      - (Likely overkill?) => refactor Scheduler instead to have a generic "Sequence" interface instead to avoid duplication per type
+      - Execute/Evaluate could be an injected lambda respectively a reference to a predefined lambda representing the action
+      - would this make systems easier to create over fixed-function classes?
+      - https://share.google/aimode/O5xyoUW7LDUVEM9zz
 - VARIABLE
   - Add more math operations (Sqrt, Cos, Abs, etc)
   - Integrate Variable<T> (needs design)
