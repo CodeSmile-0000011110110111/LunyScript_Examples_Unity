@@ -65,5 +65,3 @@ default behaviour:
 - expand all events
 - event methods should list number of blocks across sequences in their name, eg "OnEnabled [12 block(s)]"
 - sequences should list number of blocks in their name eg "SequenceBlock [7 block(s)]"
-
-## Questions (please answer)
