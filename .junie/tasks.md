@@ -3,8 +3,9 @@
 DONE:
 - [X] refactored ScriptEventScheduler to generic event interface
 - [X] Variables Diagnostics Window: add Global/Instance toggle
-- [X] Blocks Diagnostics Window
-- [X] Diagnostic Windows: refactor lifecycle and events to base class
+- [X] diagnostic windows: refactor lifecycle and events to base class
+- [X] Block Diagnostics Window added
+  - [X] enabled infinite nesting for If, While, etc blocks
 
 NEXT FOCUS:
 - Sequence diagnostics
@@ -12,7 +13,6 @@ NEXT FOCUS:
     - add the coroutine sequences to the tree with additional nestings
     - Input action sequences should then follow the same system
     - then refactor the Input Actions in the tree
-  - common interface for blocks containing blocks => If, While, etc. don't show theirs
 - Block Diagnostics window:
   - allow manual execute of blocks
   - show condition's current evaluate state (true/false)
