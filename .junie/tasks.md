@@ -6,6 +6,8 @@ DONE:
 - [X] diagnostic windows: refactor lifecycle and events to base class
 - [X] Block Diagnostics Window added
   - [X] enabled infinite nesting for If, While, etc blocks
+  - [X] show coroutines and their sequences
+
 
 NEXT FOCUS:
 - Sequence diagnostics
