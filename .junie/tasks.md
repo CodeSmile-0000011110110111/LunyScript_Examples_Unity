@@ -11,9 +11,7 @@ DONE:
 
 NEXT FOCUS:
 - Sequence diagnostics
-  - Coroutines: refactor runner, coroutines should be scheduled sequences in the respective lifecycle events for diagnostics => schedule a CoroutineSequenceBlock, which holds the event sequences
-    - add the coroutine sequences to the tree with additional nestings
-    - Input action sequences should then follow the same system
+    - Input action sequences should then follow the Coroutine system
     - then refactor the Input Actions in the tree
 - Block Diagnostics window:
   - allow manual execute of blocks
