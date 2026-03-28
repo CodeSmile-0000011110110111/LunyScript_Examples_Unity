@@ -18,7 +18,7 @@ NEXT FOCUS:
   - show condition's current evaluate state (true/false)
   - make all block ToString consistent
   - forward CallerMemberName to construct the API name automatically
-  - 
+  - gather sequence/block profiler metrics for the currently active object
 
 - marketing: write "docs" blog post, send patreon, discussions thread, ask for feedback
 - doc: add "install" placeholder
