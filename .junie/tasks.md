@@ -1,13 +1,6 @@
 # New Tasks
 
 DONE:
-- [X] refactored ScriptEventScheduler to generic event interface
-- [X] Variables Diagnostics Window: add Global/Instance toggle
-- [X] diagnostic windows: refactor lifecycle and events to base class
-- [X] Block Diagnostics Window added
-  - [X] enabled infinite nesting for If, While, etc blocks
-  - [X] show coroutines and their sequences
-
 
 NEXT FOCUS:
 - Sequence diagnostics
@@ -17,16 +10,9 @@ NEXT FOCUS:
   - allow manual execute of blocks
   - show condition's current evaluate state (true/false)
   - make all block ToString consistent
-  - forward CallerMemberName to construct the API name automatically
   - gather sequence/block profiler metrics for the currently active object
 
 - marketing: write "docs" blog post, send patreon, discussions thread, ask for feedback
-- doc: add "install" placeholder
-- DOC fixes
-  - [X] "advanced block uses" => for instance the ActionBlock[] arrays returned from the methods above
-  - [X] runtime loops => repeated in control flow
-  - [X] control flow, loop with variables => var enemyCount = Var.("enemyCount", 3);
-  - [X] arithmetics, passing result to parameter => missing variable declaration
 - DOC: 
   - add event usage examples
   - document Check and Run
@@ -39,8 +25,6 @@ NEXT FOCUS:
   - Inspector assigned values and references passed into script
   - Script run options eg relax name matching
 - DIAGNOSTICS
-  - Editor Window that lists variables (runtime-enabled UI)
-  - Editor Window that lists block execution trace
   - Ensure consistent naming/ToString of Block types
   - Log runtime-value of variable blocks
 - CONSISTENCY
@@ -204,7 +188,17 @@ Build a minimal, playable Brotato clone in 3D
 
 ### CW13-2026 Mar
 - [X] Window: Display Script Variables with live update, timestamps, value editing
-
+  - [X] Variables Diagnostics Window: add Global/Instance toggle
+- [X] Block Diagnostics Window added
+  - [X] enabled infinite nesting for If, While, etc blocks
+  - [X] show coroutines and their sequences
+- [X] refactored ScriptEventScheduler to generic event interface
+- [X] diagnostic windows base class
+- DOC fixes
+    - [X] "advanced block uses" => for instance the ActionBlock[] arrays returned from the methods above
+    - [X] runtime loops => repeated in control flow
+    - [X] control flow, loop with variables => var enemyCount = Var.("enemyCount", 3);
+    - [X] arithmetics, passing result to parameter => missing variable declaration
 
 ### CW12-2026 Mar
 - [X] Write first draft of manual:
