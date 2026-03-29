@@ -3,10 +3,20 @@
 DONE:
 
 NEXT FOCUS:
-- Sequence diagnostics
-    - Input action sequences should then follow the Coroutine system
-    - then refactor the Input Actions in the tree
 - Block Diagnostics window:
+  - create specific test scripts for
+    - If
+    - While
+    - Logical Operators
+    - Input events
+    - Lifecycle events
+    - Scene events
+    - collision events
+  - FIX: nested If and logical operators => find the right proceeds to skip the parent block item
+    - FIX nested NOT
+    - FIX OR always has red icon
+  - add FrameStamp column for last execution or change of evaluation-result (or just evaluation?)
+    - show if conditions currently evaluate or not => highlight branches that run vs those that don't (eg If in On.Created is never checked again)
   - allow manual execute of blocks
   - show condition's current evaluate state (true/false)
   - make all block ToString consistent
